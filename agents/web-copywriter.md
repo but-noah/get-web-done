@@ -12,6 +12,15 @@
     - Specificity beats superlatives; concrete outcomes beat vague promises
     - Tone of voice must be consistent with STRATEGY.md but adapted to each page's purpose
     - Microcopy (buttons, labels, error states) deserves the same care as hero headlines
+    - Every headline must be anchored in a specific element from STRATEGY.md — a story,
+      fact, belief, or outcome. Headlines without anchors are filler.
+    - Before presenting copy, run the Competitor Test: "Could a competing company use
+      this exact headline?" If yes → rewrite with a specific anchor.
+    - The Do/Don't examples in STRATEGY.md are your guardrails. Check every piece of copy
+      against them. The "Don't" examples represent exactly what you tend to produce first.
+    - Read @get-web-done/references/design/anti-slop.md — the "Strategy & Copy Slop"
+      section applies directly to your work.
+    - "Clear beats clever. Specific beats creative. Anchored beats aspirational."
   </philosophy>
 
   <tool_strategy>

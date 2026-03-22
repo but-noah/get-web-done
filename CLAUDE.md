@@ -12,9 +12,9 @@ The research foundation (three independent deep-research reports + base guidelin
 
 ## Project Status
 
-**Phase: Milestone 1 — Skeleton Complete**
+**Phase: Milestone 3 — Strategy + IA Complete**
 
-The specification (v1.1) is complete and approved. The full repo directory structure has been created with all stub files. All 23 commands, 12 agents, 15 workflows, 14 templates, 23 reference files, 4 skills, 4 hooks, and 3 scripts are in place as stubs. Nothing is functional yet — implementation begins with Milestone 2.
+Milestones 1-3 are complete. The full workflow from `/web:new` → `/web:strategy` → `/web:sitemap` is implemented with all agents, workflows, templates, and 7 reference files (psychology, geo-optimization, anti-slop, typography, color-systems, layout-patterns, navigation-patterns). Implementation continues with Milestone 4 (Design System + Content).
 
 ## Build Roadmap
 
@@ -26,34 +26,34 @@ The specification (v1.1) is complete and approved. The full repo directory struc
 - [x] Create all agent files as stubs (correct XML structure, placeholder content)
 - [x] Create hooks.json with correct matchers
 - [x] Create all skill SKILL.md files with correct frontmatter
-- [ ] Verify: `/web:help` lists all commands after install
+- [x] Verify: `/web:help` lists all commands after install
 - [x] Goal: Installable skeleton, all commands registered, nothing functional yet
 
-### Milestone 2: Core Workflow — Intake
-- [ ] Implement `/web:new` command with full workflow
-- [ ] Implement web-orchestrator agent (STATE.md reading, routing)
-- [ ] Implement web-intake agent (briefing conversation, guided questions)
-- [ ] Implement web-researcher agent (industry/competitor research)
-- [ ] Implement BRIEF.md template
-- [ ] Implement PROJECT.md template
-- [ ] Implement STATE.md and PROGRESS.md auto-generation
-- [ ] Implement config.json creation during `/web:new`
-- [ ] Implement `/web:progress` command
-- [ ] Implement `/web:next` command
-- [ ] Implement `/web:help` command
-- [ ] Implement next-step routing after intake completion
-- [ ] Goal: User can start a new project and get a complete BRIEF.md
+### Milestone 2: Core Workflow — Intake ✅
+- [x] Implement `/web:new` command with full workflow
+- [x] Implement web-orchestrator agent (STATE.md reading, routing)
+- [x] Implement web-intake agent (briefing conversation, guided questions)
+- [x] Implement web-researcher agent (industry/competitor research)
+- [x] Implement BRIEF.md template
+- [x] Implement PROJECT.md template
+- [x] Implement STATE.md and PROGRESS.md auto-generation
+- [x] Implement config.json creation during `/web:new`
+- [x] Implement `/web:progress` command
+- [x] Implement `/web:next` command
+- [x] Implement `/web:help` command
+- [x] Implement next-step routing after intake completion
+- [x] Goal: User can start a new project and get a complete BRIEF.md
 
-### Milestone 3: Strategy + Information Architecture
-- [ ] Implement `/web:strategy` command with workflow
-- [ ] Implement web-strategist agent with full prompt
-- [ ] Implement STRATEGY.md template
-- [ ] Implement `/web:sitemap` command with workflow
-- [ ] Implement web-ia-architect agent with full prompt
-- [ ] Implement SITEMAP.md template
-- [ ] Implement PAGE-SPEC.md template (per page generation)
-- [ ] Write reference files: psychology.md, navigation-patterns.md, geo-optimization.md
-- [ ] Goal: From briefing through complete IA with page specs
+### Milestone 3: Strategy + Information Architecture ✅
+- [x] Implement `/web:strategy` command with workflow
+- [x] Implement web-strategist agent with full prompt
+- [x] Implement STRATEGY.md template
+- [x] Implement `/web:sitemap` command with workflow
+- [x] Implement web-ia-architect agent with full prompt
+- [x] Implement SITEMAP.md template
+- [x] Implement PAGE-SPEC.md template (per page generation)
+- [x] Write reference files: psychology.md, navigation-patterns.md, geo-optimization.md
+- [x] Goal: From briefing through complete IA with page specs
 
 ### Milestone 4: Design System + Content
 - [ ] Implement `/web:design-system` command with workflow
@@ -140,6 +140,12 @@ All project state persists to `.webdesign/` in the user's project. Communication
 - Commands use `disable-model-invocation: true` (only user triggers phases)
 - Background skills use `user-invocable: false` (Claude loads them automatically)
 - External skill dependencies: marketingskills, designer-skills, web-quality-skills (Tier 1 — recommended, not required)
+
+## Design Principles
+
+- **Specifics before claims, discovery before positioning.** Distributional convergence applies to strategy, copy, and naming just as much as to visual design. Output that reads like it could apply to any company in the category is strategy-slop. Every positioning statement, headline, and section description must be anchored in something specific to THIS project. First drafts are raw material, not deliverables.
+- **Never position from category knowledge alone.** The strategist must collect client-specific stories, processes, beliefs, and decisions before writing any positioning. Category-level messaging ("we deliver innovative solutions") is the strategy equivalent of purple gradients and Inter font.
+- **Never present first-draft positioning.** All positioning must pass the internal Self-Review Gate (Competitor Test, Anchor Test, Recognition Test) before the user sees it.
 
 ## GitHub Workflow
 
