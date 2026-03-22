@@ -1,0 +1,39 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write(*.html|*.astro|*.jsx|*.tsx|*.svelte)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/post-write-a11y-check.sh \"$file\""
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/post-write-format.sh \"$file\""
+          }
+        ]
+      },
+      {
+        "matcher": "Write(*.css|*.scss)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/post-write-format.sh \"$file\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write(*.html|*.astro|*.jsx|*.tsx|*.svelte)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/pre-write-anti-slop.sh \"$file\""
+          }
+        ]
+      }
+    ]
+  }
+}

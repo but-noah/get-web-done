@@ -12,22 +12,22 @@ The research foundation (three independent deep-research reports + base guidelin
 
 ## Project Status
 
-**Phase: Pre-Build / Milestone 0 — Project Setup**
+**Phase: Milestone 1 — Skeleton Complete**
 
-The specification (v1.1) is complete and approved. The repo structure is initialized. No commands, agents, workflows, hooks, or reference files have been implemented yet.
+The specification (v1.1) is complete and approved. The full repo directory structure has been created with all stub files. All 23 commands, 12 agents, 15 workflows, 14 templates, 23 reference files, 4 skills, 4 hooks, and 3 scripts are in place as stubs. Nothing is functional yet — implementation begins with Milestone 2.
 
 ## Build Roadmap
 
-### Milestone 1: Skeleton
-- [ ] Create full repo directory structure per spec §4
-- [ ] Create package.json with npm metadata
-- [ ] Create bin/install.js (basic installer that copies files to .claude/)
-- [ ] Create all command files as stubs (correct frontmatter, placeholder body)
-- [ ] Create all agent files as stubs (correct XML structure, placeholder content)
-- [ ] Create hooks.json with correct matchers
-- [ ] Create all skill SKILL.md files with correct frontmatter
+### Milestone 1: Skeleton ✅
+- [x] Create full repo directory structure per spec §4
+- [x] Create package.json with npm metadata
+- [x] Create bin/install.js (basic installer that copies files to .claude/)
+- [x] Create all command files as stubs (correct frontmatter, placeholder body)
+- [x] Create all agent files as stubs (correct XML structure, placeholder content)
+- [x] Create hooks.json with correct matchers
+- [x] Create all skill SKILL.md files with correct frontmatter
 - [ ] Verify: `/web:help` lists all commands after install
-- [ ] Goal: Installable skeleton, all commands registered, nothing functional yet
+- [x] Goal: Installable skeleton, all commands registered, nothing functional yet
 
 ### Milestone 2: Core Workflow — Intake
 - [ ] Implement `/web:new` command with full workflow
@@ -140,3 +140,32 @@ All project state persists to `.webdesign/` in the user's project. Communication
 - Commands use `disable-model-invocation: true` (only user triggers phases)
 - Background skills use `user-invocable: false` (Claude loads them automatically)
 - External skill dependencies: marketingskills, designer-skills, web-quality-skills (Tier 1 — recommended, not required)
+
+## GitHub Workflow
+
+### Branch Strategy
+- `main` — stable, milestone-complete code only
+- `milestone/N-description` — milestone work branches
+- `feature/description` — individual feature branches off milestone branches
+
+### PR Review Criteria (for Claude as reviewer)
+When reviewing a PR, check in this order:
+1. **Spec compliance** — does it match the referenced spec sections (§)?
+2. **Constraints** — agent < 200 lines? references < 300 lines? frontmatter valid?
+3. **Layer separation** — commands thin, workflows have logic, agents have expertise?
+4. **No scope creep** — only changes what the milestone/task requires?
+5. **CLAUDE.md updated** — roadmap checkboxes checked for completed items?
+6. **No leftover placeholders** — implemented files have real content (stubs for future milestones are fine)?
+
+### Labels
+Labels are defined in `.github/labels.yml` and organized by:
+- `milestone/*` — which milestone the work belongs to
+- `layer/*` — which architectural layer is affected (command, agent, workflow, etc.)
+- `phase/*` — which user-facing phase is affected (0-intake through 7-qa)
+- `type/*` — bug, feature, task, refactor, docs, spec-change
+- `priority/*` — critical, high, medium, low
+
+### Issue Templates
+- **Bug Report** — command/agent/phase affected, repro steps, environment
+- **Feature Request** — motivation, spec reference, milestone placement
+- **Milestone Task** — roadmap item, spec sections, files to touch, acceptance criteria

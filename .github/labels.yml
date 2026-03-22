@@ -1,0 +1,119 @@
+# Milestones
+- name: milestone/1-skeleton
+  color: "bfd4f2"
+  description: "Milestone 1: Skeleton — directory structure, stubs, installer"
+- name: milestone/2-intake
+  color: "bfd4f2"
+  description: "Milestone 2: Core Workflow — Intake (/web:new, briefing)"
+- name: milestone/3-strategy-ia
+  color: "bfd4f2"
+  description: "Milestone 3: Strategy + Information Architecture"
+- name: milestone/4-design-content
+  color: "bfd4f2"
+  description: "Milestone 4: Design System + Content"
+- name: milestone/5-layout-build
+  color: "bfd4f2"
+  description: "Milestone 5: Layout + Build (code generation)"
+- name: milestone/6-qa
+  color: "bfd4f2"
+  description: "Milestone 6: QA + Polish"
+- name: milestone/7-advanced
+  color: "bfd4f2"
+  description: "Milestone 7: Advanced Features"
+
+# Layers
+- name: layer/command
+  color: "c5def5"
+  description: "Changes to commands/web/*.md"
+- name: layer/agent
+  color: "c5def5"
+  description: "Changes to agents/*.md"
+- name: layer/workflow
+  color: "c5def5"
+  description: "Changes to get-web-done/workflows/*.md"
+- name: layer/template
+  color: "c5def5"
+  description: "Changes to get-web-done/templates/*.md"
+- name: layer/reference
+  color: "c5def5"
+  description: "Changes to get-web-done/references/**/*.md"
+- name: layer/hook
+  color: "c5def5"
+  description: "Changes to hooks/"
+- name: layer/skill
+  color: "c5def5"
+  description: "Changes to skills/"
+- name: layer/installer
+  color: "c5def5"
+  description: "Changes to bin/install.js or package.json"
+
+# Phases (what the change affects in user workflow)
+- name: phase/0-intake
+  color: "d4c5f9"
+  description: "Affects Phase 0: Intake & Briefing"
+- name: phase/1-strategy
+  color: "d4c5f9"
+  description: "Affects Phase 1: Strategy"
+- name: phase/2-ia
+  color: "d4c5f9"
+  description: "Affects Phase 2: Information Architecture"
+- name: phase/3-design-system
+  color: "d4c5f9"
+  description: "Affects Phase 3: Design System"
+- name: phase/4-content
+  color: "d4c5f9"
+  description: "Affects Phase 4: Content & Copy"
+- name: phase/5-layout
+  color: "d4c5f9"
+  description: "Affects Phase 5: Layout & Components"
+- name: phase/6-build
+  color: "d4c5f9"
+  description: "Affects Phase 6: Code Generation"
+- name: phase/7-qa
+  color: "d4c5f9"
+  description: "Affects Phase 7: Quality Assurance"
+
+# Types
+- name: type/bug
+  color: "d73a4a"
+  description: "Something isn't working"
+- name: type/feature
+  color: "a2eeef"
+  description: "New feature or enhancement"
+- name: type/task
+  color: "0075ca"
+  description: "Implementation task from roadmap"
+- name: type/refactor
+  color: "e4e669"
+  description: "Code improvement without behavior change"
+- name: type/docs
+  color: "0075ca"
+  description: "Documentation only"
+- name: type/spec-change
+  color: "fbca04"
+  description: "Requires spec (gwd-spec.md) modification"
+
+# Priority
+- name: priority/critical
+  color: "b60205"
+  description: "Blocks milestone completion"
+- name: priority/high
+  color: "d93f0b"
+  description: "Important for current milestone"
+- name: priority/medium
+  color: "fbca04"
+  description: "Should be done this milestone"
+- name: priority/low
+  color: "0e8a16"
+  description: "Nice to have, can wait"
+
+# Review status
+- name: review/needs-review
+  color: "ff9f1c"
+  description: "Ready for review"
+- name: review/changes-requested
+  color: "d73a4a"
+  description: "Changes needed before merge"
+- name: review/approved
+  color: "0e8a16"
+  description: "Approved, ready to merge"

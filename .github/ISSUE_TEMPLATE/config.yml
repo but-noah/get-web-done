@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Spec Question
+    url: https://github.com/elevenworks/get-web-done/discussions
+    about: Questions about the specification or architecture decisions
