@@ -66,9 +66,14 @@ Usage: `/web:inspire https://stripe.com https://linear.app`
 **`/web:strategy`**
 Develop brand positioning, messaging framework, personas, and conversion strategy.
 
-- Reads BRIEF.md (and AUDIT.md, INSPIRATION.md if they exist)
-- Optionally spawns researcher for deeper competitive analysis
-- Produces: positioning statement, messaging framework, 2-3 personas, conversion strategy, tone guide, SEO/GEO approach
+- Audits BRIEF.md for low-confidence items, categorizes gaps by criticality
+- Resolves critical gaps through reasoning, research (spawns web-researcher), or user questions
+- **Deep Discovery (mandatory):** Collects client-specific stories, processes, and beliefs
+  before positioning. Adapts questions to project type (freelancer/startup/B2B/SaaS).
+- Develops positioning with **Self-Review Gate** — internal quality check ensuring
+  no generic, category-level messaging reaches the user
+- Produces: positioning statement, messaging framework, 2-3 personas, conversion strategy,
+  tone guide with Do/Don't examples, SEO/GEO approach, resolved low-confidence items table
 
 Creates: `STRATEGY.md`
 

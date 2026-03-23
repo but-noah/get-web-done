@@ -19,7 +19,7 @@ Agent: web-strategist (main context — interactive conversation)
 Sub-agents: web-researcher (optional, for competitor/industry/keyword research)
 Workflow: @get-web-done/workflows/strategy-phase.md
 Agent definition: @agents/web-strategist.md
-References loaded: @get-web-done/references/design/psychology.md, @get-web-done/references/seo-geo/geo-optimization.md
+References loaded: @get-web-done/references/design/psychology.md, @get-web-done/references/seo-geo/geo-optimization.md, @get-web-done/references/design/anti-slop.md
 </execution_context>
 
 <process>

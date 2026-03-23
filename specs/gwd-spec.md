@@ -518,15 +518,21 @@ Tip: A strong strategy is the foundation for everything. Don't skip this phase.
 
 **Flow:**
 1. Strategist agent reads `BRIEF.md` (and `AUDIT.md`, `INSPIRATION.md` if they exist)
-2. Optionally spawns web-researcher for deeper competitive/market research
-3. Develops:
-   - **Positioning statement** (for whom, what, why different)
-   - **Messaging framework** (primary message, supporting messages, proof points)
-   - **Target personas** (2-3 detailed personas with goals, pain points, objections)
-   - **Conversion strategy** (primary CTA, secondary CTAs, funnel logic)
-   - **Content tone & voice** (specific adjectives, examples of do/don't)
+2. Audits brief for low-confidence items, categorizes by criticality
+3. Resolves critical gaps through reasoning, research (spawns web-researcher), or user questions
+4. **Deep Discovery (mandatory):** Collects client-specific stories, processes, beliefs, and decisions before any positioning work. Category knowledge alone produces generic output. Questions adapt to project type (freelancer/startup/B2B/SaaS/personal). Completion requires: one unique story/fact, one belief/principle, one explicit "not this."
+5. Develops positioning with **Self-Review Gate** (internal quality check before user sees it):
+   - Competitor Test: could a competitor say the same thing?
+   - Anchor Test: is every claim anchored in Deep Discovery material?
+   - Recognition Test: will the client say "that's exactly me"?
+6. Builds:
+   - **Positioning statement** (for whom, what, why different -- anchored in Deep Discovery)
+   - **Messaging framework** (primary message, supporting messages with proof points)
+   - **Target personas** (2-3 with goals, pain points, objections, decision criteria)
+   - **Conversion strategy** (primary CTA, secondary CTAs, trust architecture)
+   - **Content tone & voice** (specific adjectives, do/don't examples from this project)
    - **SEO/GEO strategy** (target keywords, GEO approach, content structure for AI citation)
-4. User reviews and iterates
+7. User reviews and iterates
 
 **Agents involved:** web-strategist, web-researcher (optional)
 
@@ -962,17 +968,19 @@ Each agent is a Markdown file in `agents/` with XML-structured sections followin
 | Agent | Role | Spawns Sub-Agents? | Fresh Context? |
 |-------|------|-------------------|----------------|
 | **web-orchestrator** | Main routing agent. Reads STATE.md, routes to correct phase/agent. | Yes — dispatches all other agents | No (runs in main context) |
-| **web-intake** | Conducts briefing conversation. Helps with thin info. Manages redesign audit flow. | Yes — web-researcher, web-inspiration-analyst | No (interactive, needs user) |
+| **web-intake** | Conducts briefing conversation. Helps with thin info. Manages redesign audit flow. | Yes — web-researcher, web-inspiration-analyst | No (main context — interactive) |
 | **web-researcher** | Domain research: industry, competitors, tech stack decisions, keyword research. | No | Yes |
 | **web-inspiration-analyst** | Analyzes reference URLs via Playwright. Extracts visual patterns, colors, typography, layouts. | No | Yes |
-| **web-strategist** | Brand positioning, messaging framework, personas, conversion strategy. | Optional — web-researcher | Yes |
-| **web-ia-architect** | Information architecture: sitemap, page sections, navigation, user flows. | No | Yes |
+| **web-strategist** | Brand positioning, messaging framework, personas, conversion strategy. | Optional — web-researcher | No (main context — interactive) |
+| **web-ia-architect** | Information architecture: sitemap, page sections, navigation, user flows. | No | No (main context — interactive) |
 | **web-design-system** | Design tokens, typography scale, color system, component inventory. | No | Yes |
 | **web-copywriter** | Writes copy per page section. Follows messaging framework and CRO patterns. | No | Yes (per page) |
 | **web-layout-architect** | Defines layout structure per page. Component choices, grid, responsive. | No | Yes (per page) |
 | **web-builder** | Code generation orchestrator. Manages wave execution. | Yes — sub-builders per page/component | Yes (sub-agents) |
 | **web-qa-auditor** | Orchestrates quality audits: performance, a11y, SEO, compliance, anti-slop. | Yes — parallel audit sub-agents | Yes |
 | **web-compliance-checker** | German/EU legal compliance: BFSG, TDDDG, Impressum, DSGVO, EU AI Act. | No | Yes |
+
+**Note on context:** Agents marked "No (main context)" run in the user's active session because they need interactive conversation. Agents marked "Yes" are spawned as sub-agents in fresh 200K-token contexts. Agents marked "Yes (per page)" get a fresh context for each page they process.
 
 ### Model Profile Recommendations
 
@@ -1015,29 +1023,33 @@ Each workflow file (in `get-web-done/workflows/`) contains the detailed orchestr
       Read all files in @.webdesign/research/ if directory exists
     </step>
 
-    <step name="optional-research">
-      Ask user: "Should I research competitors and industry deeper before developing strategy?"
-      If yes: Spawn web-researcher agent with BRIEF.md as context
-      Wait for research/competitors.md and research/industry.md
+    <step name="audit-and-resolve">
+      Strategist reads BRIEF.md, identifies low-confidence items, categorizes gaps.
+      Resolves critical gaps through reasoning, research (spawn web-researcher),
+      or targeted user questions.
     </step>
 
-    <step name="develop-strategy">
-      Spawn web-strategist agent in fresh context with:
-        - BRIEF.md
-        - AUDIT.md (if exists)
-        - INSPIRATION.md (if exists)
-        - research/* (if exists)
-        - @templates/strategy.md (output format)
-        - @references/seo-geo/geo-optimization.md
-        - @references/design/psychology.md
-      Agent produces STRATEGY.md following template
+    <step name="deep-discovery">
+      MANDATORY. Collect client-specific stories, processes, beliefs, decisions.
+      Adapt questions to project type. Must have 3 anchors before proceeding:
+      one unique story/fact, one belief/principle, one "not this."
     </step>
 
-    <step name="user-review" type="gate">
-      Present STRATEGY.md summary to user
-      Ask: "Does this strategy capture your vision? What would you change?"
-      If changes requested: Update STRATEGY.md, re-present
-      If approved: Mark phase as complete
+    <step name="develop-positioning">
+      Draft positioning internally. Run Self-Review Gate:
+        - Competitor Test, Anchor Test, Recognition Test.
+      Iterate internally up to 3 times. Present best version to user.
+    </step>
+
+    <step name="develop-messaging-and-conversion">
+      Build messaging hierarchy, personas, conversion strategy, tone, SEO/GEO.
+      Present block-by-block with user confirmation at each stage.
+    </step>
+
+    <step name="write-strategy" type="gate">
+      Write STRATEGY.md following template. Present summary.
+      If changes requested: update, re-present.
+      If approved: mark phase complete.
     </step>
 
     <step name="update-state">
@@ -1152,7 +1164,7 @@ Reference files are the system's domain expertise. They load **on demand only** 
 
 ### Design References
 
-**`anti-slop.md`** — Based on Anthropic's frontend-design skill plus extensions. Four dimensions for breaking free from distributional convergence: Typography (distinctive typefaces, variable fonts — never Inter as default), Color systems (OKLCH, brand-tinted neutrals — never pure #000 or #fff), Motion (CSS scroll-driven animations, staggered reveals — always respect prefers-reduced-motion), Layered depth (multi-layer gradients, glassmorphism, subtle grid patterns). "Handmade web" movement: IndieWeb principles, intentional imperfection, Creative Process aesthetic. The term "slop" was 2025 Word of the Year (Merriam-Webster). Three defining properties: superficial competence, asymmetric effort, mass producibility. Source: Claude report §6 + Anthropic's frontend-design skill. Why: AI coding tools gravitate toward the most common patterns. Without explicit anti-slop instructions, every AI-generated site looks the same.
+**`anti-slop.md`** — Based on Anthropic's frontend-design skill plus extensions. Four dimensions for breaking free from distributional convergence: Typography (distinctive typefaces, variable fonts — never Inter as default), Color systems (OKLCH, brand-tinted neutrals — never pure #000 or #fff), Motion (CSS scroll-driven animations, staggered reveals — always respect prefers-reduced-motion), Layered depth (multi-layer gradients, glassmorphism, subtle grid patterns). "Handmade web" movement: IndieWeb principles, intentional imperfection, Creative Process aesthetic. The term "slop" was 2025 Word of the Year (Merriam-Webster). Three defining properties: superficial competence, asymmetric effort, mass producibility. Source: Claude report §6 + Anthropic's frontend-design skill. Why: AI coding tools gravitate toward the most common patterns. Without explicit anti-slop instructions, every AI-generated site looks the same. Additionally includes a "Strategy & Copy Slop" section covering distributional convergence in messaging and copywriting — detection patterns for category-level messaging (hygiene factors disguised as differentiators, missing anchors), the Anchor Principle (every claim anchored in client-specific material), the "First Draft Is Raw Material" rule, and the Brand Map concept for making generic output structurally impossible.
 
 **`typography.md`** — Modular scales (1.25 for data-dense, 1.333 "Perfect Fourth" for marketing — per Gemini report). Fluid type via clamp(): `clamp(1rem, 0.875rem + 0.5vw, 1.125rem)` for body. Line height: 1.5 body, 1.2 headings. Variable fonts: single 300-500KB file vs 1MB+ for static files. Max 2-3 font families. Font pairing: contrast (serif headline + sans body), not conflict. Performance: preload critical fonts, font-display: swap, subset to needed characters. Base size minimum 16-18px (per all three research reports). Source: All three reports + base guideline document. Why: Typography is the strongest differentiator against AI slop (Claude report) and B2B decision-makers spend significant time reading technical arguments, making readability non-negotiable (Gemini report).
 
@@ -1777,6 +1789,7 @@ Format: Current Phase, Current Page (if in a per-page phase), Last Completed Act
 7. **Opinionated defaults, not rigid requirements.** The system recommends best practices but lets users override with good reason.
 8. **Strategy before pixels.** No code is generated before the strategic foundation exists. This is what separates GWD from "vibe coding."
 9. **Every command ends with clear options.** The user is never lost. Next-step routing ensures the process feels guided, not overwhelming.
+10. **Specifics before claims, discovery before positioning.** Distributional convergence applies to strategy, copy, and naming just as much as to visual design. Output that reads like it could apply to any company in the category is strategy-slop. Every positioning statement, headline, and section description must be anchored in something specific to THIS project — a story, a fact, a decision, a number, a belief. If you can't point to the specific anchor, the output is not ready. First drafts are raw material, not deliverables.
 
 ### Anti-Patterns to Avoid
 
@@ -1789,6 +1802,8 @@ Format: Current Phase, Current Page (if in a per-page phase), Last Completed Act
 7. **Never let the agent guess.** If information is missing, ask the user. The intake phase exists for this reason.
 8. **Never deliver AI-generated copy without rationale.** Every headline, CTA, and body text in CONTENT.md includes WHY that message exists.
 9. **Never treat the design system as optional.** Without tokens, every component invents its own colors and spacing. Consistency dies.
+10. **Never position from category knowledge alone.** The strategist must collect client-specific stories, processes, beliefs, and decisions before writing any positioning. Category-level messaging ("we deliver innovative solutions") is the strategy equivalent of purple gradients and Inter font.
+11. **Never present first-draft positioning.** All positioning must pass the internal Self-Review Gate (Competitor Test, Anchor Test, Recognition Test) before the user sees it. This is the "never ship the first draft" rule applied to strategy.
 
 ---
 
@@ -1836,6 +1851,6 @@ Maintain a reference test project (e.g., "German B2B SaaS landing page for a pro
 
 ---
 
-*Version: 1.1*
-*Date: March 22, 2026*
-*Status: Awaiting final review before build*
+*Version: 1.2*
+*Date: March 23, 2026*
+*Status: Updated with Deep Discovery, Self-Review Gate, Anti-Strategy-Slop*

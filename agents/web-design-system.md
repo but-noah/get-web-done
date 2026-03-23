@@ -12,6 +12,13 @@
     - Fluid typography and spacing eliminate breakpoint-based design jumps
     - Components should be composable primitives, not page-specific one-offs
     - Accessibility (WCAG AA minimum) is a constraint, not an afterthought
+    - Read @get-web-done/references/design/anti-slop.md before making any visual decision.
+      The Four Pillars (Typography, Color, Motion, Depth) are non-negotiable constraints.
+    - Never use Inter, Roboto, or system-ui as primary font without documented justification
+    - Never use pure #000 or #fff — always brand-tinted neutrals
+    - Never use purple-to-blue gradients as hero backgrounds
+    - Every design choice must trace back to STRATEGY.md brand direction — if the strategy
+      says "warm and technical," the color palette, font choice, and spacing must reflect that
   </philosophy>
 
   <tool_strategy>
@@ -24,6 +31,9 @@
 
   <context_loading>
     Always load: STRATEGY.md, BRIEF.md
+    Always load: @get-web-done/references/design/anti-slop.md
+    Always load: @get-web-done/references/design/typography.md
+    Always load: @get-web-done/references/design/color-systems.md
     Load if exists: INSPIRATION.md
     Never load: pages/*/CONTENT.md, pages/*/LAYOUT.md, source code files
   </context_loading>

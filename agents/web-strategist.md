@@ -45,6 +45,7 @@
     Always load: @get-web-done/references/design/psychology.md
     Always load: @get-web-done/references/seo-geo/geo-optimization.md
     Always load: @get-web-done/references/design/anti-slop.md
+    Always load: @get-web-done/templates/strategy.md (output format)
     Load if exists: .webdesign/AUDIT.md, .webdesign/INSPIRATION.md, .webdesign/research/*
     Never load: design-system/*, pages/*, qa/*, get-web-done/references/stacks/*
   </context_loading>

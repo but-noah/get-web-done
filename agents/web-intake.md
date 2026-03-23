@@ -70,19 +70,23 @@
       Key differentiator (free text). Summarize and confirm.
 
     PHASE 3 — AUDIENCE AND GOALS (skip answered fields):
-      MUST use AskUserQuestion single-select for audience type:
+      Use AskUserQuestion single-select for audience type UNLESS user already
+      clearly specified this (e.g., "my customers are startup founders"):
         "Who is your ideal customer?" → B2C / Small business / Mid-market / Enterprise
       If B2B: follow up — "Who decides? Who influences?"
-      MUST use AskUserQuestion single-select for primary conversion:
+      Use AskUserQuestion single-select for primary conversion UNLESS user already
+      specified a clear CTA (e.g., "I want them to book a call via Calendly"):
         "What's the #1 thing visitors should do?" → Sign up / Demo / Contact / Purchase
       Key objections (free text — help if stuck). Summarize and confirm.
 
     PHASE 4 — BRAND AND TONE:
       Brand assets (AskUserQuestion single-select: full guidelines / just logo / nothing).
-      MUST use AskUserQuestion multiSelect for tone adjectives:
+      Use AskUserQuestion multiSelect for tone adjectives UNLESS user already
+      provided clear adjectives in earlier responses (extract and confirm instead):
         "How should your brand feel?" → Professional, Friendly, Bold, Minimal (first call)
         Then second AskUserQuestion multiSelect → Warm, Technical, Premium, Approachable
-      MUST use AskUserQuestion multiSelect for anti-adjectives:
+      Use AskUserQuestion multiSelect for anti-adjectives UNLESS user already
+      provided clear anti-adjectives in earlier responses:
         "What should it NOT feel like?" → Corporate, Cheap, Aggressive, Generic
       Reference sites (free text). Summarize and confirm.
 

@@ -62,7 +62,7 @@ Milestones 1-3 are complete. The full workflow from `/web:new` → `/web:strateg
 - [ ] Implement `/web:content` command with per-page workflow
 - [ ] Implement web-copywriter agent with full prompt
 - [ ] Implement CONTENT.md template (per page)
-- [ ] Write reference files: anti-slop.md, typography.md, color-systems.md, layout-patterns.md
+- [x] Write reference files: anti-slop.md, typography.md, color-systems.md, layout-patterns.md (completed pre-M3)
 - [ ] Integrate marketingskills references (copywriting, page-cro, geo-optimization)
 - [ ] Goal: Design system generated + copy for every page
 
@@ -130,6 +130,17 @@ All project state persists to `.webdesign/` in the user's project. Communication
 - `CLAUDE.md` — This file. Project context for Claude Code sessions.
 - `README.md` — Public-facing documentation for GitHub.
 
+## Source of Truth Hierarchy
+
+When implementation files and the spec disagree, follow this priority:
+1. **Agent files** (`agents/*.md`) — the actual agent behavior
+2. **Workflow files** (`get-web-done/workflows/*.md`) — the actual phase logic
+3. **Template files** (`get-web-done/templates/*.md`) — the actual output formats
+4. **Reference files** (`get-web-done/references/**/*.md`) — the actual domain knowledge
+5. **specs/gwd-spec.md** — the architectural intent (may lag behind implementation)
+
+The spec is v1.2 and reflects the architecture. Implementation files are the current truth. If you find a conflict, update the spec to match implementation, not the other way around.
+
 ## Important Constraints
 
 - Agent prompts must stay under 200 lines including XML structure
@@ -143,9 +154,18 @@ All project state persists to `.webdesign/` in the user's project. Communication
 
 ## Design Principles
 
-- **Specifics before claims, discovery before positioning.** Distributional convergence applies to strategy, copy, and naming just as much as to visual design. Output that reads like it could apply to any company in the category is strategy-slop. Every positioning statement, headline, and section description must be anchored in something specific to THIS project. First drafts are raw material, not deliverables.
-- **Never position from category knowledge alone.** The strategist must collect client-specific stories, processes, beliefs, and decisions before writing any positioning. Category-level messaging ("we deliver innovative solutions") is the strategy equivalent of purple gradients and Inter font.
-- **Never present first-draft positioning.** All positioning must pass the internal Self-Review Gate (Competitor Test, Anchor Test, Recognition Test) before the user sees it.
+Core principles that govern all GWD agents and outputs. Full list in specs/gwd-spec.md §24.
+
+1. **The complexity is in the system, not in the workflow.** Users see simple commands. Behind the scenes: context engineering, agent orchestration, state management.
+2. **Every phase has clear inputs, defined outputs, and human approval gates.** No ambiguity about what happens when.
+3. **Fresh contexts prevent quality degradation.** Heavy work in sub-agents with clean 200K windows. Main session stays lean.
+4. **Files are the communication medium.** No in-memory state. Everything persists to `.webdesign/`. Sessions can crash and resume.
+5. **Deterministic enforcement beats prompting.** Hooks always execute. Skills are suggestions. Use hooks for non-negotiable quality gates.
+6. **Strategy before pixels.** No code is generated before the strategic foundation exists.
+7. **Every command ends with clear next-step routing.** The user is never lost.
+8. **Specifics before claims, discovery before positioning.** Distributional convergence applies to strategy and copy, not just design. Every claim must be anchored in something specific to THIS project. First drafts are raw material, not deliverables.
+9. **Never position from category knowledge alone.** Collect client-specific stories, processes, beliefs before writing any positioning.
+10. **Never present first-draft positioning.** All positioning must pass the Self-Review Gate before the user sees it.
 
 ## GitHub Workflow
 

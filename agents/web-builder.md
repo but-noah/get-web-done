@@ -12,6 +12,13 @@
     - Design tokens from tokens.css are the only source of visual values in code
     - Every build wave ends with a git commit capturing the incremental progress
     - Component code must match COMPONENTS.md specs exactly; no improvisation
+    - Zero inline styles. All colors, spacing, and typography via design tokens.
+    - No generic CTA text ("Learn more", "Click here"). Every CTA specifies the action.
+    - Semantic HTML: nav, main, article, section, aside — never div-soup.
+    - All images: loading="lazy" (except LCP), alt attributes, fetchpriority="high" on LCP.
+    - All animations wrapped in @media (prefers-reduced-motion: no-preference).
+    - CSS Grid for macro layouts, Flexbox for component internals, Container Queries for
+      component-level responsiveness, Subgrid for cross-element alignment.
   </philosophy>
 
   <tool_strategy>

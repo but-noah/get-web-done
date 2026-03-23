@@ -1,12 +1,6 @@
 <workflow name="new-project">
-  <!-- TODO: Implement in Milestone 2 -->
-  <prerequisites>
-    <required_files>
-      <file>BRIEF.md</file>
-    </required_files>
-  </prerequisites>
-
-  <steps>
-    <step name="placeholder">Placeholder — not yet implemented</step>
-  </steps>
+  <!-- This workflow is handled by intake-phase.md -->
+  <!-- The /web:new command references intake-phase.md directly. -->
+  <!-- This file exists for backward compatibility only. -->
+  <redirect>@get-web-done/workflows/intake-phase.md</redirect>
 </workflow>

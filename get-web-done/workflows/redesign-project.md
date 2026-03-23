@@ -1,12 +1,6 @@
 <workflow name="redesign-project">
-  <!-- TODO: Implement in Milestone 2 -->
-  <prerequisites>
-    <required_files>
-      <file>BRIEF.md</file>
-    </required_files>
-  </prerequisites>
-
-  <steps>
-    <step name="placeholder">Placeholder — not yet implemented</step>
-  </steps>
+  <!-- Redesign projects use the same intake workflow with project type = "redesign". -->
+  <!-- The /web:new command handles the new/redesign branching. -->
+  <!-- This file exists for backward compatibility only. -->
+  <redirect>@get-web-done/workflows/intake-phase.md</redirect>
 </workflow>
